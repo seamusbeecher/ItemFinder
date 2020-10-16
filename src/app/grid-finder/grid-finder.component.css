@@ -1,0 +1,14 @@
+table {
+    justify-content: right;
+    width: 90%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.mat-form-field {
+  font-size: 14px;
+  width: 92%;
+  margin-left: 50px;
+  margin-left: 50px;
+}

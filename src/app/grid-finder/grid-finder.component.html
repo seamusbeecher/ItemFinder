@@ -1,0 +1,46 @@
+<ng-template #noItems>
+    <hr>
+    <h5>There are no Products to list</h5>
+  </ng-template>
+
+  <button mat-raised-button color="accent" (click)="addOne()">Add Hacker to Firestore</button>
+  
+  <div class="justify-content-center">
+
+    <div class="filter">
+      <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+    
+    <table mat-table [dataSource]="gridFinder" class="mat-elevation-z8" matSort [trackBy]="trackByUid">
+      
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+      
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+      
+        <!-- Location Column -->
+        <ng-container matColumnDef="pay">
+          <th mat-header-cell *matHeaderCellDef> PayNow </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button (click)="onlineClick(element)" button type="button" class="btn btn-secondary"> Pay Online </button> </td>
+        </ng-container>
+      
+        <!-- Price Column -->
+        <ng-container matColumnDef="list">
+          <th mat-header-cell *matHeaderCellDef> List </th>
+          <td mat-cell *matCellDef="let element"> <button mat-raised-button (click)="listClick(element)" button type="button" class="btn btn-secondary"> Shopping List </button> </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="firestoredisplayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: firestoredisplayedColumns;"></tr>
+      </table>
+  </div>

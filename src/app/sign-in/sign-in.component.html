@@ -1,0 +1,39 @@
+<div class="login-form d-flex justify-content-center">
+    <form action="/examples/actions/confirmation.php" method="post">
+        <h2 class="text-center">Sign in</h2>        
+        <div class="text-center social-btn">
+            <a href="#" class="btn btn-primary btn-block"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
+            <a href="#" class="btn btn-info btn-block"><i class="fa fa-twitter"></i> Sign in with <b>Twitter</b></a>
+            <div *ngIf="auth.user$ | async as user; else login">
+                {{ user | json}}
+                <hr>
+                <button class="button" (click)="auth.signOut()">Sign Out</button>
+            </div>
+            <ng-template #login>
+                <button class="btn btn-danger btn-block" (click)="auth.googleSignin()"><i class="fa fa-google"></i>Sign in with <b>Google</b></button>
+            </ng-template>
+        </div>
+        <div class="or-seperator"><i>or</i></div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                <input type="text" class="form-control" name="username" placeholder="Username" required="required" [(ngModel)]="email">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                <input type="password" class="form-control" name="password" placeholder="Password" required="required" [(ngModel)]="password">
+            </div>
+        </div>        
+        <div class="form-group">
+            <button type="submit" class="btn btn-success btn-block login-btn" (click)="signInUser()">Sign in</button>
+        </div>
+        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me </label>
+            <a href="#" class="pull-right text-success"> | Forgot Password? </a>
+        </div>  
+        <div class="hint-text small">Don't have an account?<button mat-raised-button (click)="register()" button type="button" class="btn btn-secondary"> Register Now! </button></div>
+    </form>
+    
+</div>
